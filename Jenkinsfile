@@ -1,5 +1,10 @@
 pipeline {
     agent any
+
+    triggers {
+        pollSCM('*/15 * * * *')
+    }
+
     stages {    
         stage('Restore Packages') {
             steps {
