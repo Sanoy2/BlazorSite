@@ -1,6 +1,16 @@
 ﻿@page "/about-me"
 <h3>AboutMe works!</h3>
+<p>Right now is: @datenow</p>
 
 @code {
+    string datenow = "";
 
+    protected override async Task OnInitializedAsync()
+    {
+        await Task.Run(() =>
+        {
+            Thread.Sleep(2500);
+            datenow = DateTime.Now.ToString();
+        });
+    }
 }
