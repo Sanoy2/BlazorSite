@@ -1,21 +1,31 @@
 ﻿@inherits LayoutComponentBase
+@inject IBootstrapCSS BootstrapCSS
 
 @*<div class="sidebar">
-    <NavMenu />
-</div>*@
+        <NavMenu />
+    </div>*@
 
 @*<div class="main">
-    <div class="top-row px-4">
-        <a href="http://blazor.net" target="_blank" class="ml-md-auto">About</a>
-    </div>
+        <div class="top-row px-4">
+            <a href="http://blazor.net" target="_blank" class="ml-md-auto">About</a>
+        </div>
 
-    <div class="content px-4">
-        @Body
-    </div>
-</div>*@
+        <div class="content px-4">
+            @Body
+        </div>
+    </div>*@
 
+<Navbar/>
 
-<div class="container" style="padding: 0; margin: 0;">
+<BSContainer>
+    <BSRow>
+        <BSCol XS="12">@Body</BSCol>
+    </BSRow>
+</BSContainer>
+
+<div style="min-height: 2000px"></div>
+<Footer/>
+@*<div class="container" style="padding: 0; margin: 0;">
     <div class="row">
         <div class="col-sm-2">
 
@@ -32,5 +42,12 @@
             Footer
         </div>
     </div>
-    
-</div>
+
+</div>*@
+
+@code {
+    protected override async Task OnInitializedAsync()
+    {
+        await BootstrapCSS.SetBootstrapCSS("4.3.1");
+    }
+}
