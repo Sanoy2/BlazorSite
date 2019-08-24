@@ -1,5 +1,14 @@
-﻿<Router AppAssembly="typeof(Program).Assembly">
+﻿@inject IUriHelper uriHelper
+<Router AppAssembly="typeof(Program).Assembly">
     <NotFoundContent>
         <p>Sorry, there's nothing at this address.</p>
+        <BSButton OnClick="GoHome">Go home</BSButton>
     </NotFoundContent>
 </Router>
+
+@code {
+    void GoHome(UIMouseEventArgs e)
+    {
+        uriHelper.NavigateTo("/");
+    }
+}
