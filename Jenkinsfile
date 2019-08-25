@@ -30,9 +30,31 @@ pipeline {
             }
         }
         
-        stage('Deploy') {
+        stage('Deploy Master') {
+            when { branch 'master' }
             steps {
-                echo 'Deploy  will be here'
+                echo 'Deploy master will be here'
+            }
+        }
+
+        stage('Deploy Dev') {
+            when { branch 'dev' }
+            steps {
+                echo 'Deploy dev will be here'
+            }
+        }
+
+        stage('Do not deploy') {
+            when {
+                not {
+                    anyOf {
+                        branch 'master';
+                        branch 'dev'
+                    }
+                }
+            }
+            steps {
+                echo 'Nothing is deployed'
             }
         }
     }
