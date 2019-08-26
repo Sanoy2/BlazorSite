@@ -13,9 +13,14 @@
     <PackageReference Include="Microsoft.AspNetCore.Blazor.Build" Version="3.0.0-preview8.19405.7" PrivateAssets="all" />
     <PackageReference Include="Microsoft.AspNetCore.Blazor.HttpClient" Version="3.0.0-preview8.19405.7" />
     <PackageReference Include="Microsoft.AspNetCore.Blazor.DevServer" Version="3.0.0-preview8.19405.7" PrivateAssets="all" />
+    <PackageReference Include="Toolbelt.Blazor.I18nText" Version="5.0.0.19" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Shared\MyBlazorSite.Shared.csproj" />
   </ItemGroup>
+  <ItemGroup>
+    <Watch Remove="i18ntext\MyText.en.json" />
+  </ItemGroup>
+  <ProjectExtensions><VisualStudio><UserProperties /></VisualStudio></ProjectExtensions>
 
 </Project>
