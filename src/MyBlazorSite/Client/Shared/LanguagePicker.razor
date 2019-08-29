@@ -1,0 +1,23 @@
+﻿@inject Toolbelt.Blazor.I18nText.I18nText I18nText
+
+<BSButtonGroup IsToolbar="true">
+    <BSButtonGroup Class="mr-2" Size="Size.Small">
+        @foreach (var language in settings.SupportedLanguages)
+        {
+            <BSButton Color="Color.Success" @onclick="@(async () => await ChangeLanguage(language))">@language</BSButton>
+        }
+    </BSButtonGroup>
+</BSButtonGroup>
+
+@code {
+    Settings settings;
+    protected override async Task OnInitializedAsync()
+    {
+        await Task.FromResult(settings = new Settings());
+    }
+
+    private async Task ChangeLanguage(string language)
+    {
+        await I18nText.SetCurrentLanguageAsync(language);
+    }
+}

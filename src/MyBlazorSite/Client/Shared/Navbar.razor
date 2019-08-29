@@ -1,19 +1,30 @@
-﻿<BSNavbar IsStickyTop="true" IsExpand="true" IsDark="true" Color="Color.Dark">
-    <BSNavbarBrand href="/">Navbar</BSNavbarBrand>
+﻿@inject Toolbelt.Blazor.I18nText.I18nText I18nText
+
+<BSNavbar IsStickyTop="true" IsExpand="true" IsDark="true" Color="Color.Dark">
+    <BSNavbarBrand href="/">@MyNavbar.TITLE</BSNavbarBrand>
     <BSCollapse IsOpen="true" IsNavbar="true">
         <BSNav IsList="true" IsPills="true" Alignment="Alignment.Center">
             <BSNavItem>
-                <BSNavLink IsActive="true" href="/">Home</BSNavLink>
+                <BSNavLink IsActive="true" href="/">@MyNavbar.HOME</BSNavLink>
             </BSNavItem>
             <BSNavItem>
-                <BSNavLink href="/about-me">About me</BSNavLink>
+                <BSNavLink href="/about-me">@MyNavbar.ABOUT_ME</BSNavLink>
             </BSNavItem>
             <BSNavItem>
-                <BSNavLink href="/contact-me">Contact me</BSNavLink>
+                <BSNavLink href="/contact-me">@MyNavbar.CONTACT_ME</BSNavLink>
             </BSNavItem>
             <BSNavItem>
-                <BSNavLink href="/my-projects">My projects</BSNavLink>
+                <BSNavLink href="/my-projects">@MyNavbar.MY_PROJECTS</BSNavLink>
             </BSNavItem>
         </BSNav>
     </BSCollapse>
 </BSNavbar>
+
+@code {
+    MyBlazorSite.Client.I18nText.Navbar MyNavbar = new MyBlazorSite.Client.I18nText.Navbar();
+
+    protected override async Task OnInitializedAsync()
+    {
+        MyNavbar = await I18nText.GetTextTableAsync<MyBlazorSite.Client.I18nText.Navbar>(this);
+    }
+}
