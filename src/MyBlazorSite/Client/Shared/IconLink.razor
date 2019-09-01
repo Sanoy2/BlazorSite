@@ -1,0 +1,12 @@
+﻿<div class="iconLink">
+    <a href="@link.Url">
+        <i class="@link.Icon" aria-hidden="true"></i>
+    </a>
+    <p>
+        <label>@link.Title</label>
+    </p>
+</div>
+
+@code {
+    [Parameter] public Link link { get; set; }
+}

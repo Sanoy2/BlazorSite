@@ -1,0 +1,15 @@
+﻿<div class="iconLinkVerticalContainer">
+    @foreach(var link in linkProvider.Links)
+    {
+        <IconLink link="link" />
+    }
+</div>
+
+@code {
+    ILinksProvider linkProvider;
+
+    protected override async Task OnInitializedAsync()
+    {
+        await Task.FromResult(linkProvider = new LinksProvider());
+    }
+}

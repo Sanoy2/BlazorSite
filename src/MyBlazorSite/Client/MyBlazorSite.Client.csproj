@@ -28,8 +28,5 @@
   <ItemGroup>
     <None Remove="i18ntext\Navbar\Navbar.en.json" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Models\" />
-  </ItemGroup>
 
 </Project>
