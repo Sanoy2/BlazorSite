@@ -1,23 +1,25 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.ResponseCompression;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using MyBlazorSite.Server.Quartz;
-using MyBlazorSite.Server.Quartz.Jobs;
-using MyBlazorSite.Server.Services;
-using Quartz;
-using Quartz.Impl;
-using Quartz.Spi;
+using MyBlazorSite.Server.IoC;
+using System;
 using System.Linq;
 
 namespace MyBlazorSite.Server
 {
     public class Startup
     {
-        // This method gets called by the runtime. Use this method to add services to the container.
-        // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
-        public void ConfigureServices(IServiceCollection services)
+        public IConfiguration Configuration { get; }
+
+        public Startup(IConfiguration configuration)
+        {
+            Configuration = configuration;
+        }
+
+        public IServiceProvider ConfigureServices(IServiceCollection services)
         {
             services.AddMvc().AddNewtonsoftJson();
             services.AddResponseCompression(opts =>
@@ -26,18 +28,8 @@ namespace MyBlazorSite.Server
                     new[] { "application/octet-stream" });
             });
 
-            services.AddScoped<IScope, Scoped>();
-
-            // Add Quartz services
-            services.AddSingleton<IJobFactory, SingletonJobFactory>();
-            services.AddSingleton<ISchedulerFactory, StdSchedulerFactory>();
-            services.AddHostedService<QuartzHostedService>();
-
-            // Add our job
-            services.AddSingleton<HelloJob>();
-            services.AddSingleton(new JobSchedule(
-                jobType: typeof(HelloJob),
-                cronExpression: "0/5 * * * * ?")); // run every 5 seconds
+            var container = new ServiceResolver(services).GetServiceProvider();
+            return container;
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

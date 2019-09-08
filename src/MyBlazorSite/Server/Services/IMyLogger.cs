@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace MyBlazorSite.Server.Services
 {
-    interface IScope
+    public interface IMyLogger
     {
         void Log(string text);
     }

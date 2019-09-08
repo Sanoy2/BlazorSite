@@ -6,17 +6,18 @@ using System.Threading.Tasks;
 
 namespace MyBlazorSite.Server.Services
 {
-    public class Scoped : IScope
+    public class MyLogger : IMyLogger
     {
-        private readonly ILogger<Scoped> _logger;
-        public Scoped(ILogger<Scoped> logger)
-        {
-            _logger = logger;
-        }
+        private readonly ILogger logger;
 
+        public MyLogger(ILogger logger)
+        {
+            this.logger = logger;
+        }
+        
         public void Log(string text)
         {
-            _logger.LogInformation(text);
+            logger.LogInformation($"Information, {text}");
         }
     }
 }
