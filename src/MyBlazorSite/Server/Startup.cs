@@ -3,6 +3,12 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.ResponseCompression;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using MyBlazorSite.Server.Quartz;
+using MyBlazorSite.Server.Quartz.Jobs;
+using MyBlazorSite.Server.Services;
+using Quartz;
+using Quartz.Impl;
+using Quartz.Spi;
 using System.Linq;
 
 namespace MyBlazorSite.Server
@@ -19,6 +25,19 @@ namespace MyBlazorSite.Server
                 opts.MimeTypes = ResponseCompressionDefaults.MimeTypes.Concat(
                     new[] { "application/octet-stream" });
             });
+
+            services.AddScoped<IScope, Scoped>();
+
+            // Add Quartz services
+            services.AddSingleton<IJobFactory, SingletonJobFactory>();
+            services.AddSingleton<ISchedulerFactory, StdSchedulerFactory>();
+            services.AddHostedService<QuartzHostedService>();
+
+            // Add our job
+            services.AddSingleton<HelloJob>();
+            services.AddSingleton(new JobSchedule(
+                jobType: typeof(HelloJob),
+                cronExpression: "0/5 * * * * ?")); // run every 5 seconds
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
