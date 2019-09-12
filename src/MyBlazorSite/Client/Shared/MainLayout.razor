@@ -1,16 +1,9 @@
 ﻿@inherits LayoutComponentBase
-@inject IBootstrapCSS BootstrapCSS
 
 <Navbar/>
 <LanguagePicker/>
 
-<BSContainer>
-    <BSRow>
-        <BSCol XS="1"></BSCol>
-        <BSCol XS="10">@Body</BSCol>
-        <BSCol XS="1"><VerticalLinks /></BSCol>
-    </BSRow>
-</BSContainer>
+<div>@Body</div>
 
 <div style="min-height: 2000px"></div>
 <Footer/>
@@ -19,6 +12,6 @@
 @code {
     protected override async Task OnInitializedAsync()
     {
-        await BootstrapCSS.SetBootstrapCSS("4.3.1");
+        await Task.CompletedTask;
     }
 }

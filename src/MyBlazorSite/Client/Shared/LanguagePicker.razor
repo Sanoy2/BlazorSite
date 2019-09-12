@@ -1,13 +1,13 @@
 ﻿@inject Toolbelt.Blazor.I18nText.I18nText I18nText
 
-<BSButtonGroup IsToolbar="true">
-    <BSButtonGroup Class="mr-2" Size="Size.Small">
+<div>
+    <div Class="mr-2" Size="Size.Small">
         @foreach (var language in settings.SupportedLanguages)
         {
-            <BSButton Color="Color.Success" @onclick="@(async () => await ChangeLanguage(language))">@language</BSButton>
+            <button Color="Color.Success" @onclick="@(async () => await ChangeLanguage(language))">@language</button>
         }
-    </BSButtonGroup>
-</BSButtonGroup>
+    </div>
+</div>
 
 @code {
     Settings settings;

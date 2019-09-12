@@ -1,6 +1,6 @@
 ﻿@inject Toolbelt.Blazor.I18nText.I18nText I18nText
 
-<BSNavbar IsStickyTop="true" IsExpand="true" IsDark="true" Color="Color.Dark">
+@*<BSNavbar IsStickyTop="true" IsExpand="true" IsDark="true" Color="Color.Dark">
     <BSNavbarBrand href="/">@MyNavbar.TITLE</BSNavbarBrand>
     <BSCollapse IsOpen="true" IsNavbar="true">
         <BSNav IsList="true" IsPills="true" Alignment="Alignment.Center">
@@ -18,7 +18,7 @@
             </BSNavItem>
         </BSNav>
     </BSCollapse>
-</BSNavbar>
+</BSNavbar>*@
 
 @code {
     MyBlazorSite.Client.I18nText.Navbar MyNavbar = new MyBlazorSite.Client.I18nText.Navbar();
