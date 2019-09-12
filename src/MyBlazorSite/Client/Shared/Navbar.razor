@@ -8,7 +8,7 @@
                 <BSNavLink IsActive="true" href="/">@MyNavbar.HOME</BSNavLink>
             </BSNavItem>
             <BSNavItem>
-                <BSNavLink href="/about-me">@MyNavbar.ABOUT_ME</BSNavLink>
+                <BSNavLink href="/about-me"></BSNavLink>
             </BSNavItem>
             <BSNavItem>
                 <BSNavLink href="/contact-me">@MyNavbar.CONTACT_ME</BSNavLink>
@@ -20,6 +20,13 @@
     </BSCollapse>
 </BSNavbar>*@
 
+<ul class="topnav">
+    <li><a class="active" href="/">@MyNavbar.HOME</a></li>
+    <li><a href="/about-me">@MyNavbar.ABOUT_ME</a></li>
+    <li><a href="/contact-me">@MyNavbar.CONTACT_ME</a></li>
+    <li class="right"><a href="/my-projects">@MyNavbar.MY_PROJECTS</a></li>
+    <LanguagePicker/>
+</ul>
 @code {
     MyBlazorSite.Client.I18nText.Navbar MyNavbar = new MyBlazorSite.Client.I18nText.Navbar();
 

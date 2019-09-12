@@ -1,12 +1,10 @@
 ﻿@inject Toolbelt.Blazor.I18nText.I18nText I18nText
 
-<div>
-    <div Class="mr-2" Size="Size.Small">
-        @foreach (var language in settings.SupportedLanguages)
-        {
-            <button Color="Color.Success" @onclick="@(async () => await ChangeLanguage(language))">@language</button>
-        }
-    </div>
+<div class="language-picker">
+    @foreach (var language in settings.SupportedLanguages)
+    {
+        <button Color="Color.Success" @onclick="@(async () => await ChangeLanguage(language))">@language</button>
+    }
 </div>
 
 @code {

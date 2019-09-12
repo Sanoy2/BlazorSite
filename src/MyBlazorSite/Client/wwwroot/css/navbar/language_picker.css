@@ -1,0 +1,11 @@
+﻿.language-picker {
+    display: flex;
+}
+
+.language-picker button {
+    color: blue;
+    padding: 0.2em;
+    width: 3em;
+    border-radius: 25%;
+    margin: 0.2em;
+}
